@@ -10,6 +10,13 @@ import CustomerEngagement from "./components/dashboard/CustomerEngagement";
 import SubscriptionManagement from "./components/dashboard/SubscriptionManagement";
 import Settings from "./components/dashboard/Settings";
 import WhatsAppBotConfig from "./components/dashboard/WhatsAppBotConfig";
+import { AdminLayout } from "./components/admin/AdminLayout";
+import { AdminDashboard } from "./components/admin/AdminDashboard";
+import { BusinessList } from "./components/admin/BusinessList";
+import { RevenueOverview } from "./components/admin/RevenueOverview";
+import { AdminLogin } from "./components/admin/AdminLogin";
+import { AnalyticsDashboard } from "./components/admin/AnalyticsDashboard";
+import { SystemHealth } from "./components/admin/SystemHealth";
 
 function App() {
   return (
@@ -18,6 +25,20 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Home />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="businesses" element={<BusinessList />} />
+            <Route path="revenue" element={<RevenueOverview />} />
+            <Route path="analytics" element={<AnalyticsDashboard />} />
+            <Route path="system" element={<SystemHealth />} />
+            <Route path="support" element={<AdminDashboard />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+
+          {/* Existing Dashboard Routes */}
           <Route path="/orders" element={<DashboardLayout />}>
             <Route index element={<OrderManagement />} />
           </Route>
